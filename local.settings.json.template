@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "db_server": "<server>.database.windows.net",
+    "db_database": "<database>",
+    "db_user": "todo-backend",
+    "db_password": "Super_Str0ng*P@ZZword!"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

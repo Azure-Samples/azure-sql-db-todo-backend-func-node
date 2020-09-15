@@ -6,9 +6,9 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get",
-        "post"
-      ]
+        "get", "put", "post", "delete", "patch"
+      ],
+      "route": "todo/{id:int?}"
     },
     {
       "type": "http",
