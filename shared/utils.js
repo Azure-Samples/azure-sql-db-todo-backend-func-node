@@ -1,7 +1,3 @@
-const { callbackify } = require('util');
-
-require('dotenv').config();
-
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request
 var TYPES = require('tedious').TYPES;
@@ -9,7 +5,7 @@ var TYPES = require('tedious').TYPES;
 const executeSQL = (context, verb, payload) => new Promise((resolve, reject) => {
     var result = "";    
     const paramPayload = (payload != null) ? JSON.stringify(payload) : '';
-    context.log(`Payload: ${JSON.stringify(payload)}`);
+    //context.log(`Payload: ${JSON.stringify(payload)}`);
 
     const connection = new Connection({
         server: process.env["db_server"],

@@ -8,7 +8,7 @@ todoREST = function (context, req) {
     enrichToDo = function (source)
     {
         var todoUrl = new URL(req.url);
-        console.log(`Result: ${source}`);                
+        //console.log(`Result: ${source}`);                
         var todo = JSON.parse(source);
         if (todo instanceof Array) {
             todo.forEach(e => {
