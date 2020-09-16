@@ -7,37 +7,19 @@ set -euo pipefail
 # - jq: https://stedolan.github.io/jq/download/
 
 # Make sure these values are correct for your environment
-resourceGroup="dm-todo-backend-01"
-appName="dm-tdb-01"
-storageName="dmtdb01"
+resourceGroup="dm-todo-backend-02"
+appName="dm-tdb-02"
+storageName="dmtdb02"
 location="WestUS2" 
 
 # Change this if you are using your own github repository
 gitSource="https://github.com/azure-samples/azure-sql-db-todo-backend-func-node"
 
-# Read values from local.settings.json
-export db_server=`cat local.settings.json | jq .Values.db_server -r`
-if [[ -z "${db_server:-}" ]]; then
-	echo "Please make sure you have 'db_server' set in your local.settings.json file";
-	exit 1;
-fi
-
-export db_database=`cat local.settings.json | jq .Values.db_database -r`
-if [[ -z "${db_database:-}" ]]; then
-	echo "Please make sure you have 'db_database' set in your local.settings.json file";
-	exit 1;
-fi
-
-export db_user=`cat local.settings.json | jq .Values.db_user -r`
-if [[ -z "${db_user:-}" ]]; then
-	echo "Please make sure you have 'db_user' set in your local.settings.json file";
-	exit 1;
-fi
-
-export db_password=`cat local.settings.json | jq .Values.db_password -r`
-if [[ -z "${db_password:-}" ]]; then
-	echo "Please make sure you have 'db_password' set in your local.settings.json file";
-	exit 1;
+# Check that local.settings.json exists
+settingsFile="./local.settings.json"
+if ! [ -f $settingsFile ]; then
+    echo "$settingsFile does not exists. Please create it."
+    exit
 fi
 
 echo "Creating Resource Group...";
@@ -77,24 +59,11 @@ az functionapp create \
     --runtime-version 10 \
 
 echo "Configuring Connection String...";
-az functionapp config appsettings set \
-    -g $resourceGroup \
-    -n $appName \
-    --settings "db_server=$db_server"
-    
-az functionapp config appsettings set \
-    -g $resourceGroup \
-    -n $appName \
-    --settings "db_database=$db_database"
-
-az functionapp config appsettings set \
-    -g $resourceGroup \
-    -n $appName \
-    --settings "db_user=$db_user"
-
-az functionapp config appsettings set \
-    -g $resourceGroup \
-    -n $appName \
-    --settings "db_password=$db_password"
-
-echo "Done."
+settings=(db_server db_database db_user db_password)
+for i in "${settings[@]}"
+do
+    v=`cat local.settings.json | jq .Values.$i -r`
+    c="az functionapp config appsettings set -g $resourceGroup -n $appName --settings $i='$v'"
+    #echo $c
+	eval $c
+done
