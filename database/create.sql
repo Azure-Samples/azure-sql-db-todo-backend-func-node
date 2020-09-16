@@ -13,7 +13,7 @@ start with 1
 increment by 1;
 go
 
-drop table dbo.todos;
+drop table if exists dbo.todos;
 go
 
 create table dbo.todos
