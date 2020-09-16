@@ -8,6 +8,12 @@ As per Todo Backend API specifications, unit test can be run via this link:
 
 [Todo Backend Specs Unit Test](http://todobackend.com/specs/index.html?https://dm-tdb-01.azurewebsites.net/api/todo)
 
+Keep in mind that I'm using the free tier of Azure Functions, so the runtime will go to sleep if no-one is using it. Wake up can take up to 30 seconds, so if you run the test you may get errors like the following:
+
+![](./images/azure-function-slow-wakeup-error.png)
+
+If that happens run the test couple of times and you should see all test passing.
+
 ## Live Client
 
 You can also test this implementation right using the live [ToDoMVC](http://todomvc.com/) test app:
