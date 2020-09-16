@@ -1,57 +1,131 @@
-# Project Name
+# Azure Functions, Node and Azure SQL Todo Backend Implementation
 
-(short, 1-3 sentenced, description of the project)
+Implementation of the [Todo Backend API](http://www.todobackend.com/index.html) using Azure Function, Node and Azure SQL. 
 
-## Features
+## Unit Test
 
-This project framework provides the following features:
+As per Todo Backend API specifications, unit test can be run via this link:
 
-* Feature 1
-* Feature 2
-* ...
+[Todo Backend Specs Unit Test](http://todobackend.com/specs/index.html?https://dm-tdb-01.azurewebsites.net/api/todo)
 
-## Getting Started
+## Live Client
 
-### Prerequisites
+You can also test this implementation right using the live [ToDoMVC](http://todomvc.com/) test app:
 
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
+[Todo Full-Stack Example](http://todobackend.com/client/index.html?https://dm-tdb-01.azurewebsites.net/api/ToDo)
 
 
-## Demo
+# Setup Database
 
-A demo app is included to show how to use the project.
+Execute the `/database/create.sql` script on a Azure SQL database of your choice, then use SQL Server Management Studio or Azure Data Studio to run the script. 
 
-To run the demo, follow these steps:
+If you need any help in executing the SQL script on Azure SQL, you can find a Quickstart here: [Use Azure Data Studio to connect and query Azure SQL database](https://docs.microsoft.com/en-us/sql/azure-data-studio/quickstart-sql-database).
 
-(Add steps to start up the demo)
+If you need to create an Azure SQL database from scratch, an Azure SQL S0 database would be more than fine to run the tests.
 
-1.
-2.
-3.
+```
+az sql db create -g <resource-group> -s <server-name> -n resiliency_test --service-objective S0
+```
 
-## Resources
+Remember that if you don't have Linux environment where you can run [AZ CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) you can always use the [Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart). If you prefer to do everything via the portal, here's a tutorial: [Create an Azure SQL Database single database](https://docs.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?tabs=azure-portal).
 
-(Any additional resources or related projects)
+If you are completely new to Azure SQL, no worries! Here's a full playlist that will help you: [Azure SQL for beginners](https://www.youtube.com/playlist?list=PLlrxD0HtieHi5c9-i_Dnxw9vxBY-TqaeN).
 
-- Link to supporting information
-- Link to similar sample
-- ...
+
+## Run sample locally
+
+Make sure you add the information needed to connect to the desired Azure SQL database in the `local.settings.json`. Create it in the root folder of the sample using the `.template` file, if there isn't one already. After editing the file should look like the following:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "db_server": "<server>.database.windows.net",
+    "db_database": "<database>",
+    "db_user": "todo-backend",
+    "db_password": "Super_Str0ng*P@ZZword!"
+  }
+}
+```
+
+where `<server>` and `<database>` have been replaced with the correct values for your environment. Once done that, start local Azure Function host with
+
+```bash
+func start
+```
+
+if you are using [Azure Functions Core Tools](https://www.npmjs.com/package/azure-functions-core-tools) or using [Visual Studio Code Azure Function extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+
+For more info on other options to run Azure Function locally look here:
+
+[Code and test Azure Functions locally](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-local)
+
+Once the Azure Function HTTP  is up and running you'll see something like
+
+```text
+Now listening on: http://0.0.0.0:7071
+Application started. Press Ctrl+C to shut down.
+
+Http Functions:
+
+        customer: [GET,PUT,PATCH,DELETE] http://localhost:7071/api/customer/{id:int?}
+```
+
+Using a REST Client (like [Insomnia](https://insomnia.rest/), [Postman](https://www.getpostman.com/) or curl), you can now call your API, for example:
+
+```bash
+curl -X GET http://localhost:7071/api/todo
+```
+
+and you'll a list of existing todo:
+
+```json
+[
+  {
+    "id": 549,
+    "title": "azure function nodejs sample",
+    "completed": false,
+    "url": "http://localhost:7071/api/todo/549"
+  }
+]
+```
+
+## Debug from Visual Studio Code
+
+Debugging from Visual Studio Code is fully supported, thanks to the [Visual Studio Code Azure Function extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+
+## Deploy to Azure
+
+Now that your REST API solution is ready, it's time to deploy it on Azure so that anyone can take advantage of it. A script `azure-deploy.sh` that uses AZ CLI (so it needs to be executed from a Linux shell. If you don't have one on your machine you can use [Azure Cloud Shell](https://azure.microsoft.com/en-us/features/cloud-shell)) is available within the repo. Just make sure you fill the needed settings into the `local.settings.json` as mentioned before as the script will read the values from there.
+
+```bash
+./azure-deploy.sh
+```
+
+It will care of everything for you:
+
+- Creating a Resource Group (you can set the name you want by changing it directly in the .sh file)
+- Creating a Storage Account
+- Creating Azure Application Insights
+- Create an Azure Function app
+- Deploying repo code to Azure Function
+
+Enjoy!
+
+# Contributing 
+
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+More details in the full [Contributing](./CONTRIBUTING.md) page.
