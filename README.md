@@ -27,10 +27,10 @@ Execute the `/database/create.sql` script on a Azure SQL database of your choice
 
 If you need any help in executing the SQL script on Azure SQL, you can find a Quickstart here: [Use Azure Data Studio to connect and query Azure SQL database](https://docs.microsoft.com/en-us/sql/azure-data-studio/quickstart-sql-database).
 
-If you need to create an Azure SQL database from scratch, an Azure SQL S0 database would be more than fine to run the tests.
+If you need to create an Azure SQL database from scratch, an Azure SQL S0 database would be more than fine to run this sample.
 
 ```
-az sql db create -g <resource-group> -s <server-name> -n resiliency_test --service-objective S0
+az sql db create -g <resource-group> -s <server-name> -n <database_+_name> --service-objective S0
 ```
 
 Remember that if you don't have Linux environment where you can run [AZ CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) you can always use the [Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart). If you prefer to do everything via the portal, here's a tutorial: [Create an Azure SQL Database single database](https://docs.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?tabs=azure-portal).
@@ -104,7 +104,7 @@ Debugging from Visual Studio Code is fully supported, thanks to the [Visual Stud
 
 ## Deploy to Azure
 
-Now that your REST API solution is ready, it's time to deploy it on Azure so that anyone can take advantage of it. A script `azure-deploy.sh` that uses AZ CLI (so it needs to be executed from a Linux shell. If you don't have one on your machine you can use [Azure Cloud Shell](https://azure.microsoft.com/en-us/features/cloud-shell)) is available within the repo. Just make sure you fill the needed settings into the `local.settings.json` as mentioned before as the script will read the values from there.
+If you want to the deploy this solution to Azure, you can take advantage of the script `azure-deploy.sh` that uses AZ CLI to deploy Azure Functions. It needs to be executed from a Linux shell. If you don't have one on your machine you can use [Azure Cloud Shell](https://azure.microsoft.com/en-us/features/cloud-shell). Just make sure you fill the needed settings into the `local.settings.json` as mentioned before as the script will read the values from there.
 
 ```bash
 ./azure-deploy.sh
