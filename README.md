@@ -1,4 +1,30 @@
-# Azure Functions, Node and Azure SQL Todo Backend Implementation
+---
+page_type: sample
+languages:
+- nodejs
+- javascript
+- tsql
+- sql
+products:
+- azure
+- vs-code
+- azure-sql-database
+- azure-functions
+description: "Todo Backend Implementation with Azure Functions, Node and Azure SQL"
+urlFragment: "azure-sql-db-todo-backend-func-node"
+---
+
+<!-- 
+Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
+
+Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
+
+Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
+-->
+
+# Todo Backend Implementation with Azure Functions, Node and Azure SQL
+
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 Implementation of the [Todo Backend API](http://www.todobackend.com/index.html) using Azure Function, Node and Azure SQL. 
 
@@ -20,6 +46,11 @@ You can also test this implementation right using the live [ToDoMVC](http://todo
 
 [Todo Full-Stack Example](http://todobackend.com/client/index.html?https://dm-tdb-01.azurewebsites.net/api/ToDo)
 
+## Full-Stack Implementation
+
+If you are interested in a full-stack implementation that uses Vue.Js, Azure Static Web Apps, Node and Azure SQL, look here:
+
+[TodoMVC Sample App Full Stack Implementation](https://github.com/Azure-Samples/azure-sql-db-todo-mvc)
 
 # Setup Database
 
