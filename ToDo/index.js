@@ -47,13 +47,15 @@ todoREST = function (context, req) {
             break;
     }
 
-    executeSQL(context, prefix, payload).then(result => {
-        todo = enrichToDo(result);
-        setContext(todo);
-    }, reject => {
-        context.log.error(reject);
-        setContext("Error while executing SQL statement", 500);
-    });
+    executeSQL(context, prefix, payload)
+        .then(ok => {
+            todo = enrichToDo(ok);
+            setContext(todo);
+        })
+        .catch(err => {
+            context.log.error(err);
+            setContext("Error while executing SQL statement", 500);
+        });
 }
 
 module.exports = todoREST;
