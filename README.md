@@ -107,7 +107,7 @@ Application started. Press Ctrl+C to shut down.
 
 Http Functions:
 
-        customer: [GET,PUT,PATCH,DELETE] http://localhost:7071/api/customer/{id:int?}
+        todo: [GET,PUT,PATCH,DELETE] http://localhost:7071/api/todo/{id:int?}
 ```
 
 Using a REST Client (like [Insomnia](https://insomnia.rest/), [Postman](https://www.getpostman.com/) or curl), you can now call your API, for example:
