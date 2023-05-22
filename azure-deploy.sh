@@ -7,9 +7,10 @@ set -euo pipefail
 # - jq: https://stedolan.github.io/jq/download/
 
 # Make sure these values are correct for your environment
-resourceGroup="dm-todo-backend-02"
-appName="dm-tdb-02"
-storageName="dmtdb02"
+sampleId=`tr -dc 0-9 </dev/urandom | head -c 9 ; echo ''`
+resourceGroup="dm-sql-db-todo-backend-func-node"
+appName="sample${sampleId}"
+storageName="sample${sampleId}"
 location="WestUS2" 
 
 # Change this if you are using your own github repository

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "tedious": "^9.0.1"
-  },
-  "devDependencies": {}
+    "tedious": "^9.2.3"
+  }
 }

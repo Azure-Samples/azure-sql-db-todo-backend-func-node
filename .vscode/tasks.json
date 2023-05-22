@@ -3,19 +3,20 @@
 	"tasks": [
 		{
 			"type": "func",
+			"label": "func: host start",
 			"command": "host start",
-			"problemMatcher": "$func-watch",
+			"problemMatcher": "$func-node-watch",
 			"isBackground": true,
-			"dependsOn": "npm install"
+			"dependsOn": "npm install (functions)"
 		},
 		{
 			"type": "shell",
-			"label": "npm install",
+			"label": "npm install (functions)",
 			"command": "npm install"
 		},
 		{
 			"type": "shell",
-			"label": "npm prune",
+			"label": "npm prune (functions)",
 			"command": "npm prune --production",
 			"problemMatcher": []
 		}
