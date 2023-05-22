@@ -5,12 +5,13 @@ languages:
 - javascript
 - tsql
 - sql
+- json
 products:
 - azure
 - vs-code
 - azure-sql-database
 - azure-functions
-description: "Todo Backend Implementation with Azure Functions, Node and Azure SQL"
+description: "TodoMVC Backend Implementation with Azure Functions, Node and Azure SQL"
 urlFragment: "azure-sql-db-todo-backend-func-node"
 ---
 
@@ -22,7 +23,7 @@ Guidance on onboarding samples to docs.microsoft.com/samples: https://review.doc
 Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
 -->
 
-# Todo Backend Implementation with Azure Functions, Node and Azure SQL
+# TodoMVC Backend Implementation with Azure Functions, Node and Azure SQL
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -107,7 +108,7 @@ Application started. Press Ctrl+C to shut down.
 
 Http Functions:
 
-        customer: [GET,PUT,PATCH,DELETE] http://localhost:7071/api/customer/{id:int?}
+        todo: [GET,PUT,PATCH,DELETE] http://localhost:7071/api/todo/{id:int?}
 ```
 
 Using a REST Client (like [Insomnia](https://insomnia.rest/), [Postman](https://www.getpostman.com/) or curl), you can now call your API, for example:

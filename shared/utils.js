@@ -21,6 +21,36 @@ const executeSQL = (context, verb, payload) => new Promise((resolve, reject) => 
             encrypt: true
         }
     });
+    
+    // Use this logic to coonect to Azure SQL backend pools using managed indentity of an Azure VM
+    
+    /*    const connection = new Connection({
+        server: process.env["db_server"],
+        authentication: {
+            type: 'azure-active-directory-msi-vm',
+        },
+        options: {
+            database: process.env["db_database"],
+            encrypt: true,
+            port: 1433
+        }
+    });
+
+    // Use this logic to coonect to Azure SQL backend pools using managed indentity of an Azure App Service/Function Apps 
+    
+    const connection = new Connection({
+        server: process.env["db_server"],
+        authentication: {
+            type: 'azure-active-directory-msi-app-service',
+        },
+        options: {
+            database: process.env["db_database"],
+            encrypt: true,
+            port: 1433
+        }
+    });
+
+*/
 
     const request = new Request(`web.${verb}_todo`, (err) => {
         if (err) {
