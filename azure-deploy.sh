@@ -57,7 +57,7 @@ az functionapp create \
     --functions-version 2 \
     --os-type Windows \
     --runtime node \
-    --runtime-version 10 \
+    --runtime-version 18
 
 echo "Configuring Connection String...";
 settings=(db_server db_database db_user db_password)
