@@ -54,7 +54,7 @@ az functionapp create \
     --consumption-plan-location $location \
     --deployment-source-url $gitSource \
     --deployment-source-branch main \
-    --functions-version 2 \
+    --functions-version 4 \
     --os-type Windows \
     --runtime node \
     --runtime-version 18
