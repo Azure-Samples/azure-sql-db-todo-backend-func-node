@@ -8,9 +8,9 @@ set -euo pipefail
 
 # Make sure these values are correct for your environment
 sampleId=`tr -dc 0-9 </dev/urandom | head -c 9 ; echo ''`
-resourceGroup="dm-sql-db-todo-backend-func-node"
-appName="sample${sampleId}"
-storageName="sample${sampleId}"
+resourceGroup="dm-tdb-01"
+appName="dm-tdb-01"
+storageName="dmtdb01"
 location="WestUS2" 
 
 # Change this if you are using your own github repository
